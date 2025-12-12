@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="light">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Pet Adoption</title>
+    <link href="https://cdn.jsdelivr.net/npm/daisyui@5" rel="stylesheet" type="text/css"/>
+    <script src="https://cdn.jsdelivr.net/npm/@tailwindcss/browser@4"></script>
+    <script src="https://kit.fontawesome.com/50fe816c05.js" crossorigin="anonymous"></script>
+    <link rel="stylesheet" href="style.css" />
+  </head>
+  <body>
+    <header class="container mx-auto border">
+      <!-- Navbar Section -->
+      <nav class="mx-auto py-2 flex justify-between items-center">
+        <div class="flex gap-2">
+          <img src="assets/logo.webp" alt="Peddy Logo" />
+          <h2 class="text-2xl">Peddy</h2>
+        </div>
+        <div class="hidden lg:flex gap-10">
+          <h3 class="text-lg font-bold text-slate-500">Home</h3>
+          <h3 class="text-lg font-bold text-slate-500">Shop</h3>
+          <h3 class="text-lg font-bold text-slate-500">Contact</h3>
+        </div>
+        <div class="flex">
+          <i class="hidden lg:flex fa-solid fa-circle-user text-2xl"></i>
+          <i class="lg:hidden flex fa-solid fa-bars text-lg"></i>
+        </div>
+      </nav>
+      <!-- Hero Section -->
+      <div class="container mx-auto flex flex-col items-center pt-5">
+        <h2 class="lg:text-2xl font-bold text-gray-500">Bringing Families Together</h2>
+        <h1 class="text-xl lg:text-6xl font-bold">Your Path to Adoption</h1>
+        <h1 class="text-xl lg:text-6xl font-bold">Starts Here</h1>
+        <p class="text-center my-5 w-4/5 lg:h-3/6 text-gray-800 font-medium">
+          It is a long established fact that a reader will be distracted by the readable content of a page when looking at its layout. The point of using Lorem Ipsum is that it has a.
+        </p>
+        <a href="" class="bg-teal-700 text-white py-2 px-5 rounded-lg my-5">View More</a>
+        <img class="w-72 lg:w-full" src="assets/pet.webp" alt="Pet Image">
+      </div>
+    </header>
+    <!-- Main Section -->
+    <main id="main-section" class="container mx-auto border">
+      <div>
+        <!-- Title Description Section -->
+        <section class="flex flex-col items-center gap-5">
+          <h1 class="text-xl lg:text-3xl font-bold">Adopt Your Best Friend</h1>
+          <p class="w-4/5 lg:w-2/5 text-center text-gray-800">
+            It is a long established fact that a reader will be
+            distracted by the readable content of a page when
+            looking at its layout. The point of using Lorem Ipsum is
+            that it has a.
+          </p>
+        </section>
+
+        <!-- Category Buttons -->
+        <div id="categories" class="flex justify-between mt-12"></div>
+      </div>
+    </main>
+
+    <script src="card.js"></script>
+  </body>
+</html>
