@@ -11,22 +11,30 @@ const loadCategories = () => {
     .catch((error) => console.log(error));
 };
 
-// loadCards
-const loadCards = () => {
+// loadPets
+const loadPets = () => {
   fetch("https://openapi.programming-hero.com/api/peddy/pets")
     .then((res) => res.json())
-    .then((data) => displayCards(data.pets))
+    .then((data) => displayPets(data.pets))
     .catch((error) => console.log(error));
 };
 
+// loadCategoryPets
+const loadCategoryPets = (category) => {
+  fetch(`https://openapi.programming-hero.com/api/peddy/category/${category}`)
+  .then(res => res.json())
+  .then(data => displayPets(data.data))
+  .catch(error => console.log(error))
+}
+
 // displayCards
-const displayCards = (cards) => {
-  const cardsContainer = document.getElementById("cards");
+const displayPets = (cards) => {
+  const petsContainer = document.getElementById("Pets");
+  petsContainer.innerHTML = ""
 
   cards.forEach((card) => {
-    console.log(card);
     const petCard = document.createElement("div");
-    petCard.classList = "card card-compact rounded-xl border border-gray-400 p-3 gap-2";
+    petCard.classList = "card card-compact rounded-xl border border-gray-400 p-3 gap-2 shadow-sm";
     petCard.innerHTML = `
       <figure class='h-[200px] border  border-gray-400 rounded-xl'>
         <img class='h-full w-full object-cover' src=${card.image} alt="Shoes"/>
@@ -46,7 +54,7 @@ const displayCards = (cards) => {
         <button class="btn text-white font-medium bg-teal-700 rounded-xl">Details</button>
       </div>
     `;
-    cardsContainer.append(petCard)
+    petsContainer.append(petCard)
   });
 };
 
@@ -58,17 +66,17 @@ const displayCategories = (categories) => {
   categories.forEach((item) => {
     // console.log(item);
     // create a button
-    const button = document.createElement("button");
-    button.innerHTML = `
-    <a class="btn flex items-center justify-between hover:text-white hover:bg-teal-700 rounded-lg">
+    const buttonContainer = document.createElement("div");
+    buttonContainer.innerHTML = `
+    <a onclick="loadCategoryPets('${item.category}')" class="btn flex items-center justify-between hover:text-white hover:bg-teal-700 rounded-lg">
       <img class="w-8 object-cover" src="${item.category_icon}"> ${item.category}
     </a>
     `
 
     // add button to category container
-    categoryContainer.append(button);
+    categoryContainer.append(buttonContainer);
   });
 };
 
 loadCategories();
-loadCards();
+loadPets();
