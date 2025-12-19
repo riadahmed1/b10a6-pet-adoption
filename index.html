@@ -10,42 +10,42 @@
     <link rel="stylesheet" href="style.css" />
   </head>
   <body>
-    <header class="container mx-auto border">
+    <header class="container mx-auto border border-gray-300">
       <!-- Navbar Section -->
-      <nav class="mx-auto py-2 flex justify-between items-center">
+      <nav class="flex items-center justify-between py-2 mx-auto">
         <div class="flex gap-2">
           <img src="assets/logo.webp" alt="Peddy Logo" />
           <h2 class="text-2xl">Peddy</h2>
         </div>
-        <div class="hidden lg:flex gap-10">
+        <div class="hidden gap-10 lg:flex">
           <h3 class="text-lg font-bold text-slate-500">Home</h3>
           <h3 class="text-lg font-bold text-slate-500">Shop</h3>
           <h3 class="text-lg font-bold text-slate-500">Contact</h3>
         </div>
         <div class="flex">
-          <i class="hidden lg:flex fa-solid fa-circle-user text-2xl"></i>
-          <i class="lg:hidden flex fa-solid fa-bars text-lg"></i>
+          <i class="hidden text-2xl lg:flex fa-solid fa-circle-user"></i>
+          <i class="flex text-lg lg:hidden fa-solid fa-bars"></i>
         </div>
       </nav>
       <!-- Hero Section -->
-      <div class="container mx-auto flex flex-col items-center pt-5">
-        <h2 class="lg:text-2xl font-bold text-gray-500">Bringing Families Together</h2>
-        <h1 class="text-xl lg:text-6xl font-bold">Your Path to Adoption</h1>
-        <h1 class="text-xl lg:text-6xl font-bold">Starts Here</h1>
-        <p class="text-center my-5 w-4/5 lg:h-3/6 text-gray-800 font-medium">
+      <div class="container flex flex-col items-center pt-5 mx-auto">
+        <h2 class="font-bold text-gray-500 lg:text-2xl">Bringing Families Together</h2>
+        <h1 class="text-xl font-bold lg:text-6xl">Your Path to Adoption</h1>
+        <h1 class="text-xl font-bold lg:text-6xl">Starts Here</h1>
+        <p class="w-4/5 my-5 font-medium text-center text-gray-800 lg:h-3/6">
           It is a long established fact that a reader will be distracted by the readable content of a page when looking at its layout. The point of using Lorem Ipsum is that it has a.
         </p>
-        <a href="" class="bg-teal-700 text-white py-2 px-5 rounded-lg my-5">View More</a>
+        <a href="" class="px-5 py-2 my-5 text-white bg-teal-700 rounded-lg">View More</a>
         <img class="w-72 lg:w-full" src="assets/pet.webp" alt="Pet Image">
       </div>
     </header>
     <!-- Main Section -->
-    <main id="main-section" class="container mx-auto border">
+    <main id="main-section" class="container mx-auto border border-gray-300">
       <div>
         <!-- Title Description Section -->
         <section class="flex flex-col items-center gap-5">
-          <h1 class="text-xl lg:text-3xl font-bold">Adopt Your Best Friend</h1>
-          <p class="w-4/5 lg:w-2/5 text-center text-gray-800">
+          <h1 class="text-xl font-bold lg:text-3xl">Adopt Your Best Friend</h1>
+          <p class="w-4/5 text-center text-gray-800 lg:w-2/5">
             It is a long established fact that a reader will be
             distracted by the readable content of a page when
             looking at its layout. The point of using Lorem Ipsum is
@@ -55,6 +55,21 @@
 
         <!-- Category Buttons -->
         <div id="categories" class="flex justify-between mt-12"></div>
+
+        <!-- Sort by Price -->
+        <div class="flex items-center justify-between px-3 my-3">
+          <h1 class="text-lg font-bold lg:text-2xl">Best Deal For You</h1>
+          <button class="px-5 py-2 my-5 text-sm text-white bg-teal-700 rounded-lg lg:text-lg">Sort by Price</button>
+        </div>
+
+        <!-- Pet Card Section -->
+        <div class="flex gap-5">
+          <!-- Pet cards -->
+          <div id="cards" class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 w-3/4 mx-auto gap-5"></div>
+
+          <!-- Liked Pets img -->
+          <div id="likedPetsContainer" class="grid w-1/4 grid-cols-1 gap-3 p-3 border rounded-lg lg:grid-cols-2"></div>
+        </div>
       </div>
     </main>
 
