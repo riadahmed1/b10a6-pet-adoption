@@ -2,3 +2,32 @@
   background-color: teal;
   color: white;
 }
+
+pets.forEach((pet) => {
+    // একটি সহজ ফাংশন যা চেক করবে ডাটা আছে কি না
+    const checkInfo = (info) => (info === null || info === undefined || info === "" ? "No Info" : info);
+
+    const petCard = document.createElement("div");
+    petCard.classList = "card card-compact rounded-xl border border-gray-400 p-3 gap-2 shadow-sm";
+    
+    petCard.innerHTML = `
+      <figure class='h-[200px] border border-gray-400 rounded-xl'>
+        <img class='h-full w-full object-cover' src=${checkInfo(pet.image)} alt="Pet Image"/>
+      </figure>
+      <div>
+        <h2 class="font-bold">${checkInfo(pet.pet_name)}</h2>
+        <p><i class="fa-solid fa-paw"></i> Breed : ${checkInfo(pet.breed)}</p>
+        <p><i class="fa-regular fa-calendar"></i> Birth : ${checkInfo(pet.date_of_birth)}</p>
+        <p><i class="fa-solid fa-venus-mars"></i> Gender : ${checkInfo(pet.gender)}</p>
+        <p><i class="fa-solid fa-dollar-sign"></i> Price : ${checkInfo(pet.price)}</p>
+      </div>
+      <div class="flex justify-between items-center mt-2">
+        <button class="btn border border-teal-700 text-teal-700 bg-white hover:bg-teal-50 px-4">
+          <i class="fa-regular fa-thumbs-up"></i>
+        </button>
+        <button class="btn bg-white border border-teal-700 text-teal-700 font-bold hover:bg-teal-700 hover:text-white">Adopt</button>
+        <button onclick="loadPetDetails('${pet.petId}')" class="btn bg-white border border-teal-700 text-teal-700 font-bold hover:bg-teal-700 hover:text-white">Details</button>
+      </div>
+    `;
+    petsContainer.append(petCard);
+});

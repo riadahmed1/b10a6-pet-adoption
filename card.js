@@ -33,13 +33,43 @@ const loadCategoryPets = (category) => {
   .catch(error => console.log(error))
 }
 
+// loadPetDetails
+const loadPetDetails = async (petId) => {
+  const uri = `https://openapi.programming-hero.com/api/peddy/pet/${petId}`
+  const res = await fetch(uri)
+  const data = await res.json()
+  displayPetDetails(data.petData)
+}
+
+// displayPetDetails
+const displayPetDetails = (petDetailsData) => {
+  const petDetailsContainer = document.getElementById("petDetailsModalContent")
+  petDetailsContainer.innerHTML = `
+    <img class='mx-auto w-full object-cover rounded-xl' src=${petDetailsData.image}>
+    <h2 class="font-bold my-2 text-2xl">${petDetailsData.pet_name}</h2>
+    <div class='grid grid-cols-2'>
+      <p>Breed : ${petDetailsData.breed}</p>
+      <p>Birth : ${petDetailsData.date_of_birth}</p>
+      <p>Gender : ${petDetailsData.gender}</p>
+      <p>Price : ${petDetailsData.price}</p>
+      <p>vaccinated Status : ${petDetailsData.vaccinated_status}</p>
+    </div>
+    <div class="divider"></div>
+    <div class=''>
+      <h3 class='font-bold'>Details Information</h3>
+      <p>${petDetailsData.pet_details}</p>
+    </div>
+  `;
+  document.getElementById("showPetDetailsModal").click()
+}
+
 const removeActiveClass = () => {
   const buttons = document.getElementsByClassName("category-btn")
   for(let btn of buttons){
     btn.classList.remove("active")
   }
 }
-
+  
 // displayCards
 const displayPets = (pets) => {
   const petsContainer = document.getElementById("Pets");
@@ -61,26 +91,33 @@ const displayPets = (pets) => {
     petsContainer.classList.add("grid")
   }
 
-  pets.forEach((card) => {
+  pets.forEach((pet) => {
+    const checkData = (petData) => {
+      if (petData === null || petData === undefined || petData === ""){
+        return `<span class="text-teal-700 font-semibold">NO INFO</span>`
+      }
+      return petData
+    }
+    
     const petCard = document.createElement("div");
     petCard.classList = "card card-compact rounded-xl border border-gray-400 p-3 gap-2 shadow-sm";
     petCard.innerHTML = `
       <figure class='h-[200px] border  border-gray-400 rounded-xl'>
-        <img class='h-full w-full object-cover' src=${card.image} alt="Shoes"/>
+        <img class='h-full w-full object-cover' src="${checkData(pet.image)}" alt="Shoes"/>
       </figure>
       <div>
-        <h2 class="font-bold">${card.pet_name}</h2>
-        <p>Breed : ${card.breed}</p>
-        <p>Birth : ${card.date_of_birth}</p>
-        <p>Gender : ${card.gender}</p>
-        <p>Price : ${card.price}</p>
+        <h2 class="font-bold">${checkData(pet.pet_name)}</h2>
+        <p>Breed : ${checkData(pet.breed)}</p>
+        <p>Birth : ${checkData(pet.date_of_birth)}</p>
+        <p>Gender : ${checkData(pet.gender)}</p>
+        <p>Price : ${checkData(pet.price)}</p>
       </div>
       <div class="flex justify-between">
         <button class="btn text-teal-700 rounded-xl border-teal-700">
           <i class="fa-regular fa-thumbs-up"></i>
         </button>
         <button class="btn text-white font-medium bg-teal-700 rounded-xl">Adopt</button>
-        <button class="btn text-white font-medium bg-teal-700 rounded-xl">Details</button>
+        <button onclick="loadPetDetails('${pet.petId}')" class="btn text-white font-medium bg-teal-700 rounded-xl">Details</button>
       </div>
     `;
     petsContainer.append(petCard)
