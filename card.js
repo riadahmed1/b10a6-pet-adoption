@@ -23,16 +23,45 @@ const loadPets = () => {
 const loadCategoryPets = (category) => {
   fetch(`https://openapi.programming-hero.com/api/peddy/category/${category}`)
   .then(res => res.json())
-  .then(data => displayPets(data.data))
+  .then(data => {
+    removeActiveClass()
+
+    const activeBtn = document.getElementById(`btn-${category}`)
+    activeBtn.classList.add("active")
+    displayPets(data.data)
+  })
   .catch(error => console.log(error))
 }
 
+const removeActiveClass = () => {
+  const buttons = document.getElementsByClassName("category-btn")
+  for(let btn of buttons){
+    btn.classList.remove("active")
+  }
+}
+
 // displayCards
-const displayPets = (cards) => {
+const displayPets = (pets) => {
   const petsContainer = document.getElementById("Pets");
   petsContainer.innerHTML = ""
 
-  cards.forEach((card) => {
+  if(pets.length === 0){
+    petsContainer.classList.remove("grid")
+    petsContainer.innerHTML = `
+    <div class="w-full flex flex-col gap-5 justify-center items-center">
+      <img src="assets/error.webp"/>
+      <h1 class="text-3xl font-bold">No information Available</h1>
+      <p class="w-5/6 text-center">
+        the information of this category in empty. kindly check the other category for the pets you want to adopt or to know the details of the available pets here. Hope you will find your likeable pet at affordable price. 
+      </p>
+    </div>
+    `;
+    return
+  }else{
+    petsContainer.classList.add("grid")
+  }
+
+  pets.forEach((card) => {
     const petCard = document.createElement("div");
     petCard.classList = "card card-compact rounded-xl border border-gray-400 p-3 gap-2 shadow-sm";
     petCard.innerHTML = `
@@ -68,7 +97,7 @@ const displayCategories = (categories) => {
     // create a button
     const buttonContainer = document.createElement("div");
     buttonContainer.innerHTML = `
-    <a onclick="loadCategoryPets('${item.category}')" class="btn flex items-center justify-between hover:text-white hover:bg-teal-700 rounded-lg">
+    <a id="btn-${item.category}" onclick="loadCategoryPets('${item.category}')" class="btn category-btn flex items-center justify-between hover:text-white hover:bg-teal-700 rounded-lg">
       <img class="w-8 object-cover" src="${item.category_icon}"> ${item.category}
     </a>
     `
