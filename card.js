@@ -63,6 +63,13 @@ const displayPetDetails = (petDetailsData) => {
   document.getElementById("showPetDetailsModal").click()
 }
 
+// displayAdoptCongrats
+const displayAdoptCongrats = () => {
+  const countDownContainer = document.getElementById("AdoptModalContent")
+  
+  document.getElementById("AdoptModalBtn").click()
+}
+
 const removeActiveClass = () => {
   const buttons = document.getElementsByClassName("category-btn")
   for(let btn of buttons){
@@ -116,7 +123,7 @@ const displayPets = (pets) => {
         <button class="btn text-teal-700 rounded-xl border-teal-700">
           <i class="fa-regular fa-thumbs-up"></i>
         </button>
-        <button class="btn text-white font-medium bg-teal-700 rounded-xl">Adopt</button>
+        <button onclick="displayAdoptCongrats()" class="btn text-white font-medium bg-teal-700 rounded-xl">Adopt</button>
         <button onclick="loadPetDetails('${pet.petId}')" class="btn text-white font-medium bg-teal-700 rounded-xl">Details</button>
       </div>
     `;
@@ -130,12 +137,11 @@ const displayCategories = (categories) => {
 
   // add data in html
   categories.forEach((item) => {
-    // console.log(item);
-    // create a button
+    // create button
     const buttonContainer = document.createElement("div");
     buttonContainer.innerHTML = `
-    <a id="btn-${item.category}" onclick="loadCategoryPets('${item.category}')" class="btn category-btn flex items-center justify-between hover:text-white hover:bg-teal-700 rounded-lg">
-      <img class="w-8 object-cover" src="${item.category_icon}"> ${item.category}
+    <a id="btn-${item.category}" onclick="loadCategoryPets('${item.category}')" class="btn category-btn flex items-center justify-between bg-white border-teal-700 hover:text-white hover:bg-teal-700 rounded-lg">
+      <img class="w-6 object-cover" src="${item.category_icon}"> ${item.category}
     </a>
     `
 

@@ -68,12 +68,12 @@
           <div id="Pets" class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 w-3/4 mx-auto gap-5"></div>
 
           <!-- Liked Pets img -->
-          <div id="likedPetsContainer" class="grid w-1/4 grid-cols-1 gap-3 p-3 border rounded-lg lg:grid-cols-2"></div>
+          <div id="likedPetsContainer" class="grid w-1/4 grid-cols-1 gap-3 p-3 border border-gray-400 rounded-lg lg:grid-cols-2"></div>
         </div>
       </div>
     </main>
 
-    <!-- Open the modal using ID.showModal() method -->
+    <!-- Pet Details Modal -->
     <button id="showPetDetailsModal" class="btn hidden" onclick="my_modal_5.showModal()">Details</button>
     <dialog id="my_modal_5" class="modal modal-bottom sm:modal-middle">
       <div class="modal-box">
@@ -82,7 +82,24 @@
         </div>
         <div class="modal-action">
           <form method="dialog">
-            <!-- if there is a button in form, it will close the modal -->
+            <button class="btn">Close</button>
+          </form>
+        </div>
+      </div>
+    </dialog>
+
+    <!-- Pet Adopt Modal -->
+    <button id="AdoptModalBtn" class="btn hidden" onclick="showAdoptModal.showModal()">Adopt</button>
+    <dialog id="showAdoptModal" class="modal modal-bottom sm:modal-middle">
+      <div class="modal-box">
+        <div id="AdoptModalContent" class="flex flex-col items-center justify-center">
+          <i class="fa-solid fa-handshake-angle text-5xl text-teal-700 mb-2"></i>
+          <h2 class="font-bold text-3xl">Congratulation!</h2>
+          <p class="py-4 text-gray-600">Adoption process is starting for your pet.</p>
+          <p id="countDown" class="text-2xl">3</p>
+        </div>
+        <div class="modal-action">
+          <form method="dialog">
             <button class="btn">Close</button>
           </form>
         </div>
