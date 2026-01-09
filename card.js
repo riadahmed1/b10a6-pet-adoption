@@ -44,8 +44,8 @@ const loadCategoryPets = (category) => {
 
     // 2 seconds delay
     setTimeout(() => {
-      displayPets(data.data)
       hideLoader() // loader hide after cards load
+      displayPets(data.data)
     }, 1500);
   })
   .catch(error => {
@@ -86,10 +86,25 @@ const displayPetDetails = (petDetailsData) => {
 
 // displayAdoptCongrats
 const displayAdoptCongrats = () => {
-  const countDownContainer = document.getElementById("AdoptModalContent")
-  
-  document.getElementById("AdoptModalBtn").click()
-  const showAdoptModal = document.getElementById("showAdoptModal")
+  const AdoptModal = document.getElementById("AdoptModal")
+  const countDown = document.getElementById("countDown")
+  let count = 3
+
+  AdoptModal.showModal() // open modal
+  countDown.innerText = count // starting from 3
+
+  const interval = setInterval( () => {
+    count--;
+    countDown.innerText = count;
+
+    if(count === 1){
+      clearInterval(interval)
+
+      setTimeout(() => {
+        AdoptModal.close()
+      }, 1000);
+    }
+  }, 1000)
 }
 
 const removeActiveClass = () => {
@@ -129,7 +144,7 @@ const displayPets = (pets) => {
     }
     
     const petCard = document.createElement("div");
-    petCard.classList = "card card-compact rounded-xl border border-gray-400 p-3 gap-2 shadow-sm";
+    petCard.classList = "card card-compact rounded-2xl border border-gray-400 p-3 gap-2 shadow-sm";
     petCard.innerHTML = `
       <figure class='h-[200px] border  border-gray-400 rounded-xl'>
         <img class='h-full w-full object-cover' src="${checkData(pet.image)}" alt="Shoes"/>
@@ -173,7 +188,7 @@ const displayCategories = (categories) => {
     // create button
     const buttonContainer = document.createElement("div");
     buttonContainer.innerHTML = `
-    <a id="btn-${item.category}" onclick="loadCategoryPets('${item.category}')" class="btn category-btn flex items-center justify-between bg-white border-teal-700 hover:text-white hover:bg-teal-700 rounded-lg">
+    <a id="btn-${item.category}" onclick="loadCategoryPets('${item.category}')" class="btn category-btn flex items-center justify-between bg-white border-2 border-teal-700 hover:text-white hover:bg-teal-700 rounded-lg">
       <img class="w-6 object-cover" src="${item.category_icon}"> ${item.category}
     </a>
     `

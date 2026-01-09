@@ -10,37 +10,44 @@
     <link rel="stylesheet" href="style.css" />
   </head>
   <body>
-    <header class="container mx-auto border border-gray-300">
+    <header class="container mx-auto ">
       <!-- Navbar Section -->
-      <nav class="flex items-center justify-between py-2 mx-auto">
+      <nav class="flex items-center justify-between pt-4 lg:pt-8 px-4 lg:px-1 mx-auto">
         <div class="flex gap-2">
-          <img src="assets/logo.webp" alt="Peddy Logo" />
-          <h2 class="text-2xl">Peddy</h2>
+          <img src="assets/logo.webp" alt="Peddy Logo" class="size-7 lg:size-10"/>
+          <h2 class="text-2xl lg:text-4xl font-bold">Peddy</h2>
         </div>
         <div class="hidden gap-10 lg:flex">
-          <h3 class="text-lg font-bold text-slate-500">Home</h3>
-          <h3 class="text-lg font-bold text-slate-500">Shop</h3>
-          <h3 class="text-lg font-bold text-slate-500">Contact</h3>
+          <button class="text-xl font-bold text-slate-500 hover:text-teal-700 hover:text-2xl">Home</button>
+          <button class="text-xl font-bold text-slate-500 hover:text-teal-700 hover:text-2xl">Shop</button>
+          <button class="text-xl font-bold text-slate-500 hover:text-teal-700 hover:text-2xl">Contact</button>
         </div>
-        <div class="flex">
-          <i class="hidden text-2xl lg:flex fa-solid fa-circle-user"></i>
-          <i class="flex text-lg lg:hidden fa-solid fa-bars"></i>
+        <div class="flex gap-3 items-center">
+          <button class="hidden lg:block">
+            <i class="text-4xl fa-solid fa-circle-user"></i>
+          </button>
+          <button class="lg:hidden p-2 hover:bg-slate-100 rounded-full">
+            <i class="text-3xl lg:hidden fa-solid fa-bars"></i>
+          </button>
         </div>
       </nav>
+      <div class="divider"></div>
+
       <!-- Hero Section -->
-      <div class="container flex flex-col items-center pt-5 mx-auto">
+      <div class="container flex flex-col items-center pt-2 lg:pt-5 mx-auto">
         <h2 class="font-bold text-gray-500 lg:text-2xl">Bringing Families Together</h2>
-        <h1 class="text-xl font-bold lg:text-6xl">Your Path to Adoption</h1>
-        <h1 class="text-xl font-bold lg:text-6xl">Starts Here</h1>
-        <p class="w-4/5 my-5 font-medium text-center text-gray-800 lg:h-3/6">
+        <h1 class="text-2xl font-bold lg:text-6xl">Your Path to Adoption</h1>
+        <h1 class="text-2xl font-bold lg:text-6xl">Starts Here</h1>
+        <p class="w-5/6 lg:w-3/5 my-5 font-medium text-center text-gray-800 lg:h-3/6">
           It is a long established fact that a reader will be distracted by the readable content of a page when looking at its layout. The point of using Lorem Ipsum is that it has a.
         </p>
         <a href="#mainSection" class="px-5 py-2 my-5 text-white bg-teal-700 rounded-lg">View More</a>
         <img class="w-72 lg:w-full" src="assets/pet.webp" alt="Pet Image">
       </div>
     </header>
+
     <!-- Main Section -->
-    <main id="mainSection" class="container mx-auto border border-gray-300">
+    <main id="mainSection" class="container mx-auto">
       <div>
         <!-- Title Description Section -->
         <section class="flex flex-col items-center gap-5">
@@ -48,14 +55,12 @@
           <p class="w-4/5 text-center text-gray-800 lg:w-2/5">
             It is a long established fact that a reader will be
             distracted by the readable content of a page when
-            looking at its layout. The point of using Lorem Ipsum is
-            that it has a.
+            looking at its layout.
           </p>
         </section>
 
         <!-- Category Buttons -->
         <div id="categories" class="flex justify-between mt-12"></div>
-
         <!-- Sort by Price -->
         <div class="flex items-center justify-between px-3 my-3">
           <h1 class="text-lg font-bold lg:text-2xl">Best Deal For You</h1>
@@ -72,9 +77,9 @@
           </div>   
 
           <!-- Liked Pets img -->
-           <div class="items-start w-1/4 border rounded-lg">
-             <div id="likedPetsContainer" class="grid grid-cols-1 lg:grid-cols-2 gap-2 p-2  rounded-lg"></div>
-           </div>
+          <div class="items-start w-1/4 border border-teal-700 rounded-lg">
+            <div id="likedPetsContainer" class="grid grid-cols-1 lg:grid-cols-2 gap-2 p-2  rounded-lg"></div>
+          </div>
         </div>
       </div>
     </main>
@@ -87,8 +92,8 @@
 
         </div>
         <div class="modal-action">
-          <form method="dialog">
-            <button class="btn">Close</button>
+          <form method="dialog" class="w-full mx-auto">
+            <button id="closePetDetailsModal" class="btn w-full border border-teal-700 rounded-xl hover:bg-teal-700 hover:text-white">Close</button>
           </form>
         </div>
       </div>
@@ -96,17 +101,17 @@
 
     <!-- Pet Adopt Modal -->
     <button id="AdoptModalBtn" class="btn hidden" onclick="showAdoptModal.showModal()">Adopt</button>
-    <dialog id="showAdoptModal" class="modal modal-bottom sm:modal-middle">
+    <dialog id="AdoptModal" class="modal modal-bottom sm:modal-middle">
       <div class="modal-box">
         <div id="AdoptModalContent" class="flex flex-col items-center justify-center">
           <i class="fa-solid fa-handshake-angle text-5xl text-teal-700 mb-2"></i>
           <h2 class="font-bold text-3xl">Congratulation!</h2>
           <p class="py-4 text-gray-600">Adoption process is starting for your pet.</p>
-          <p id="countDown" class="text-2xl">3</p>
+          <h2 id="countDown" class="text-2xl">3</h2>
         </div>
         <div class="modal-action">
-          <form method="dialog">
-            <button class="btn">Close</button>
+          <form method="dialog" class="w-full mx-auto">
+            <button id="closeAdoptModal" class="btn w-full border border-teal-700 rounded-xl hover:bg-teal-700 hover:text-white">Close</button>
           </form>
         </div>
       </div>
