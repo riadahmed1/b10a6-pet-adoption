@@ -35,12 +35,12 @@
         <p class="w-4/5 my-5 font-medium text-center text-gray-800 lg:h-3/6">
           It is a long established fact that a reader will be distracted by the readable content of a page when looking at its layout. The point of using Lorem Ipsum is that it has a.
         </p>
-        <a href="" class="px-5 py-2 my-5 text-white bg-teal-700 rounded-lg">View More</a>
+        <a href="#mainSection" class="px-5 py-2 my-5 text-white bg-teal-700 rounded-lg">View More</a>
         <img class="w-72 lg:w-full" src="assets/pet.webp" alt="Pet Image">
       </div>
     </header>
     <!-- Main Section -->
-    <main id="main-section" class="container mx-auto border border-gray-300">
+    <main id="mainSection" class="container mx-auto border border-gray-300">
       <div>
         <!-- Title Description Section -->
         <section class="flex flex-col items-center gap-5">
@@ -64,11 +64,17 @@
 
         <!-- Pet Card Section -->
         <div class="flex gap-5">
-          <!-- Pet cards -->
-          <div id="Pets" class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 w-3/4 mx-auto gap-5"></div>
+          <div class="w-3/4 ">
+            <div id="loader" class="hidden flex justify-center h-screen items-start pt-20">
+              <span class="loading loading-bars loading-xl scale-150"></span>
+            </div>
+            <div id="Pets" class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 mx-auto gap-5"></div>
+          </div>   
 
           <!-- Liked Pets img -->
-          <div id="likedPetsContainer" class="grid w-1/4 grid-cols-1 gap-3 p-3 border border-gray-400 rounded-lg lg:grid-cols-2"></div>
+           <div class="items-start w-1/4 border rounded-lg">
+             <div id="likedPetsContainer" class="grid grid-cols-1 lg:grid-cols-2 gap-2 p-2  rounded-lg"></div>
+           </div>
         </div>
       </div>
     </main>

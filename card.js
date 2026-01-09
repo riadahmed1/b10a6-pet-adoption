@@ -19,8 +19,21 @@ const loadPets = () => {
     .catch((error) => console.log(error));
 };
 
+// showLoader
+const showLoader = () => {
+  document.getElementById("loader").classList.remove("hidden")
+  document.getElementById("Pets").classList.add("hidden")
+}
+// hideLoader
+const hideLoader = () => {
+  document.getElementById("loader").classList.add("hidden")
+  document.getElementById("Pets").classList.remove("hidden")
+}
+
 // loadCategoryPets
 const loadCategoryPets = (category) => {
+  showLoader() // loader show immediately
+
   fetch(`https://openapi.programming-hero.com/api/peddy/category/${category}`)
   .then(res => res.json())
   .then(data => {
@@ -28,9 +41,17 @@ const loadCategoryPets = (category) => {
 
     const activeBtn = document.getElementById(`btn-${category}`)
     activeBtn.classList.add("active")
-    displayPets(data.data)
+
+    // 2 seconds delay
+    setTimeout(() => {
+      displayPets(data.data)
+      hideLoader() // loader hide after cards load
+    }, 1500);
   })
-  .catch(error => console.log(error))
+  .catch(error => {
+    console.log(error);
+    hideLoader();
+  })
 }
 
 // loadPetDetails
@@ -68,6 +89,7 @@ const displayAdoptCongrats = () => {
   const countDownContainer = document.getElementById("AdoptModalContent")
   
   document.getElementById("AdoptModalBtn").click()
+  const showAdoptModal = document.getElementById("showAdoptModal")
 }
 
 const removeActiveClass = () => {
@@ -120,7 +142,7 @@ const displayPets = (pets) => {
         <p>Price : ${checkData(pet.price)}</p>
       </div>
       <div class="flex justify-between">
-        <button class="btn text-teal-700 rounded-xl border-teal-700">
+        <button id="addToLikeList" onclick="likedPets('${pet.image}')" class="btn text-teal-700 rounded-xl border-teal-700">
           <i class="fa-regular fa-thumbs-up"></i>
         </button>
         <button onclick="displayAdoptCongrats()" class="btn text-white font-medium bg-teal-700 rounded-xl">Adopt</button>
@@ -130,6 +152,17 @@ const displayPets = (pets) => {
     petsContainer.append(petCard)
   });
 };
+
+// likedPets
+const likedPets = (images) => {
+  const likedPetsContainer = document.getElementById("likedPetsContainer")
+  const div = document.createElement("div")
+  div.className = "overflow-hidden rounded-lg"
+  div.innerHTML = `
+    <img src=${images} class="w-full object-cover rounded-lg">
+  `
+  likedPetsContainer.append(div)
+}
 
 // displayCategories
 const displayCategories = (categories) => {
